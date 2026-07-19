@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1>Product Details</h1>
+ <table class="w-full">
+            <thead class="bg-gray-800 text-white">
+                <tr>
+                    <th class="px-6 py-4 text-left">Name</th>
+                    <th class="px-6 py-4 text-left">Description</th>
+                    <th class="px-6 py-4 text-left">Size</th>
+                </tr>
+            </thead>
+            <tbody class="bg-gray-100">
+                <tr>
+                    <td class="px-6 py-4 text-left">{{ product.name }}</td>
+                    <td class="px-6 py-4 text-left">{{ product.description }}</td>
+                    <td class="px-6 py-4 text-left">{{ product.size }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <a href="{{ path('product_edit', {'id': product.id}) }}" class="text-blue-500 hover:text-blue-700 mt-4 inline-block">Edit Product</a>
+        <a href="{{ path('product_delete', {'id': product.id}) }}" class="text-blue-500 hover:text-blue-700 mt-4 inline-block">Delete Product</a>
+
+{% endblock %}

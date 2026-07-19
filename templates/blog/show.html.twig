@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ blog.title }}{% endblock %}
+
+{% block body %}
+<div class="max-w-4xl mx-auto py-10 px-6">
+
+    <a href="{{ path('app_blog') }}"
+       class="text-blue-600 hover:underline">
+        ← Back to Blogs
+    </a>
+
+    <div class="mt-6 bg-white rounded-xl shadow-lg p-8">
+
+        <h1 class="text-4xl font-bold text-gray-900 mb-4">
+            {{ blog.title }}
+        </h1>
+
+        <div class="flex gap-4 text-gray-500 text-sm mb-6">
+            <span>👤 {{ blog.author }}</span>
+            <span>📂 {{ blog.category }}</span>
+            <span>📅 {{ blog.createdAt|date('d M Y') }}</span>
+        </div>
+
+        {% if blog.featuredImage %}
+            <img
+                src="https://picsum.photos/1200/600"
+                alt="{{ blog.title }}"
+                class="w-full h-80 object-cover rounded-lg mb-6">
+        {% endif %}
+
+        {% if blog.excerpt %}
+            <div class="bg-gray-100 border-l-4 border-blue-500 p-4 rounded mb-6 italic text-gray-700">
+                {{ blog.excerpt }}
+            </div>
+        {% endif %}
+
+        <div class="text-gray-800 leading-8 whitespace-pre-line">
+            {{ blog.content }}
+        </div>
+
+    </div>
+
+</div>
+ <div class="max-w-4xl mx-auto py-10 px-6">
+    <a href="{{ path('blog_edit', {'id': blog.id}) }}"
+       class="text-blue-600 hover:underline">
+        ✏️ Edit Blog
+    </a>
+    <a href="{{ path('blog_delete', {'id': blog.id}) }}"
+       class="text-red-600 hover:underline ml-4">
+        🗑️ Delete Blog
+    </a>
+</div>
+{% endblock %}
